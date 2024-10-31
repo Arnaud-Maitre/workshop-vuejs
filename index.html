@@ -22,38 +22,7 @@
     <!--Point d'entrée de l'app Vue-->
     <div id="app">
       <h1>{{ title }}</h1>
-      <p>{{ description }}</p>
-      <img height="200" v-bind:src="image" />
-      <p v-if="stock > 10">Disponible</p>
-      <p v-else-if="stock <= 10 && inStock">Peu de stock</p>
-      <p v-else>Plus de stock</p>
-      <p v-show="onSale">En Vente !</p>
-      <ul>
-        <li
-          v-for="detail in details"
-          :key="detail.id"
-          :style="{ color: detail.color }"
-        >
-          {{ detail.text }}
-        </li>
-      </ul>
-      <div>
-        <span
-          v-for="(carouselImage, index) in carouselImages"
-          :key="carouselImage.id"
-          @mouseover="updateSelectedImage(index)"
-        >
-          <img height="50" alt="{{ carouselImage.text }}" :src="carouselImage.image"/>
-        </span>
-      </div>
-      <button
-        @click="addToCart"
-        :style="styles.roundButton"
-        :disabled="!inStock"
-        :class="{ disabledButton: !inStock }"
-      >
-        Ajouter au panier
-      </button>
+      <product-display :premium="premium"></product-display>
       <div :class="[cart > 0 ? 'cartFilled' : '']">Panier({{ cart }})</div>
     </div>
     
@@ -71,6 +40,8 @@
 
     <!--Notre JS contenant notre app Vue-->
     <script src="./main.js"></script>
+    <script src="./components/ProductDisplay.js"></script>
+    <script src="./components/ProductDetails.js"></script>
     <script>
       const mountedApp = app.mount('#app');
     </script>
