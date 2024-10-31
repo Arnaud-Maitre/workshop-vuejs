@@ -29,7 +29,13 @@
       <p v-else>Plus de stock</p>
       <p v-show="onSale">En Vente !</p>
       <ul>
-        <li v-for="detail in details">{{ detail }}</li>
+        <li
+          v-for="detail in details"
+          :key="detail.id"
+          :style="{ color: detail.color }"
+        >
+          {{ detail.text }}
+        </li>
       </ul>
       <div>
         <span
@@ -40,8 +46,15 @@
           <img height="50" alt="{{ carouselImage.text }}" :src="carouselImage.image"/>
         </span>
       </div>
-      <button v-on:click="addToCart">Ajouter au panier</button>
-      <div>Panier({{cart}})</div>
+      <button
+        @click="addToCart"
+        :style="styles.roundButton"
+        :disabled="inStock <= 0"
+        :class="{ disabledButton: inStock <= 0 }"
+      >
+        Ajouter au panier
+      </button>
+      <div :class="[cart > 0 ? 'cartFilled' : '']">Panier({{ cart }})</div>
     </div>
     
     <!--Bootstrap-->
