@@ -3,6 +3,7 @@ const app = Vue.createApp({
       return {
         title: 'Achat de café Nespresso',
         description: '[Une description]',
+        image: 'assets/images/colombia.png'
       };
     },
   });
