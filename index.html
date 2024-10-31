@@ -28,6 +28,12 @@
       <p v-else-if="inStock <= 10 && inStock > 0">Peu de stock</p>
       <p v-else>Plus de stock</p>
       <p v-show="onSale">En Vente !</p>
+      <ul>
+        <li v-for="detail in details">{{ detail }}</li>
+      </ul>
+      <div v-for="carouselImage in carouselImages" :key="carouselImage.id">
+        {{ carouselImage.text }}
+      </div>
     </div>
     
     <!--Bootstrap-->
