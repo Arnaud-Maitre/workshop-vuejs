@@ -31,9 +31,17 @@
       <ul>
         <li v-for="detail in details">{{ detail }}</li>
       </ul>
-      <div v-for="carouselImage in carouselImages" :key="carouselImage.id">
-        {{ carouselImage.text }}
+      <div>
+        <span
+          v-for="carouselImage in carouselImages"
+          :key="carouselImage.id"
+          @mouseover="updateImage(carouselImage.image)"
+        >
+          <img height="50" alt="{{ carouselImage.text }}" :src="carouselImage.image"/>
+        </span>
       </div>
+      <button v-on:click="addToCart">Ajouter au panier</button>
+      <div>Panier({{cart}})</div>
     </div>
     
     <!--Bootstrap-->
