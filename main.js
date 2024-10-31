@@ -1,10 +1,11 @@
 const app = Vue.createApp({
   data() {
     return {
-      title: 'Achat de café Nespresso',
+      action: 'Achat de café',
+      brand: 'Nespresso',
       description: 'Café Colombia',
-      image: 'assets/images/colombia.png',
-      inStock: 12,
+      selectedImage: 0,
+      stock: 12,
       onSale: true,
       details: [
         {
@@ -55,10 +56,21 @@ const app = Vue.createApp({
   methods: {
     addToCart() {
       this.cart += 1
-      this.inStock -= 1
+      this.stock -= 1
     },
-    updateImage(image) {
-      this.image = image
-    }
+    updateSelectedImage(index) {
+      this.selectedImage = index
+    },
   },
+  computed: {
+    title() {
+      return this.action + ' ' + this.brand
+    },
+    image() {
+      return this.carouselImages[this.selectedImage].image
+    },
+    inStock() {
+      return this.stock > 0
+    },
+  }
 });

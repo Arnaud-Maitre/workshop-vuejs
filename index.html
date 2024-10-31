@@ -24,8 +24,8 @@
       <h1>{{ title }}</h1>
       <p>{{ description }}</p>
       <img height="200" v-bind:src="image" />
-      <p v-if="inStock > 10">Disponible</p>
-      <p v-else-if="inStock <= 10 && inStock > 0">Peu de stock</p>
+      <p v-if="stock > 10">Disponible</p>
+      <p v-else-if="stock <= 10 && inStock">Peu de stock</p>
       <p v-else>Plus de stock</p>
       <p v-show="onSale">En Vente !</p>
       <ul>
@@ -39,9 +39,9 @@
       </ul>
       <div>
         <span
-          v-for="carouselImage in carouselImages"
+          v-for="(carouselImage, index) in carouselImages"
           :key="carouselImage.id"
-          @mouseover="updateImage(carouselImage.image)"
+          @mouseover="updateSelectedImage(index)"
         >
           <img height="50" alt="{{ carouselImage.text }}" :src="carouselImage.image"/>
         </span>
@@ -49,8 +49,8 @@
       <button
         @click="addToCart"
         :style="styles.roundButton"
-        :disabled="inStock <= 0"
-        :class="{ disabledButton: inStock <= 0 }"
+        :disabled="!inStock"
+        :class="{ disabledButton: !inStock }"
       >
         Ajouter au panier
       </button>
