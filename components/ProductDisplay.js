@@ -5,6 +5,9 @@ app.component('product-display', {
         required: true,
       }
     },
+    emits: [
+        'add-to-cart',
+    ],
     template:
       /*html*/
       `
@@ -85,7 +88,7 @@ app.component('product-display', {
     },
     methods: {
       addToCart() {
-        this.cart += 1
+        this.$emit('add-to-cart', this.carouselImages[this.selectedImage].id)
         this.stock -= 1
       },
       updateSelectedImage(index) {

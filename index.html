@@ -22,8 +22,8 @@
     <!--Point d'entrée de l'app Vue-->
     <div id="app">
       <h1>{{ title }}</h1>
-      <product-display :premium="premium"></product-display>
-      <div :class="[cart > 0 ? 'cartFilled' : '']">Panier({{ cart }})</div>
+      <product-display :premium="premium" @add-to-cart="updateCart"></product-display>
+      <div :class="[cart.length > 0 ? 'cartFilled' : '']">Panier({{ cart.length }})</div>
     </div>
     
     <!--Bootstrap-->
