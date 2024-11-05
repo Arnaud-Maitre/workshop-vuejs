@@ -21,9 +21,15 @@
   <body>
     <!--Point d'entrée de l'app Vue-->
     <div id="app">
-      <h1>{{ title }}</h1>
-      <product-display :premium="premium" @add-to-cart="updateCart"></product-display>
-      <div :class="[cart.length > 0 ? 'cartFilled' : '']">Panier({{ cart.length }})</div>
+      <div class="container">
+        <div class="row">
+          <h1 class="col-8">{{ title }}</h1>
+          <div class="col-12">
+            <product-display :premium="premium" @add-to-cart="updateCart"></product-display>
+          </div>
+          <div class="col-4" :class="[cart.length > 0 ? 'cartFilled' : '']">Panier({{ cart.length }})</div>
+        </div>
+      </div>
     </div>
     
     <!--Bootstrap-->
@@ -40,6 +46,7 @@
 
     <!--Notre JS contenant notre app Vue-->
     <script src="./main.js"></script>
+    <script src="./components/ReviewForm.js"></script>
     <script src="./components/ProductDisplay.js"></script>
     <script src="./components/ProductDetails.js"></script>
     <script>

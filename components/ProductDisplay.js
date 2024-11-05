@@ -35,6 +35,19 @@ app.component('product-display', {
       >
         Ajouter au panier
       </button>
+      <h3>Messages :</h3>
+      <div v-if="reviews.length > 0" class=",card mb-3" v-for="(review, index) in reviews" :key="index">
+        <h5 class="card-header">
+          {{ review.name }} a noté ça {{ review.rating }} étoiles
+        </h5>
+
+        <div class=",card-body">
+          <p class=",card-text">{{ review.review }}</p>
+        </div>
+      </div>
+      <div class="col-6 offset-3">
+        <review-form @review-submitted="addReview"></review-form>
+      </div>
       `,
     data() {
       return {
@@ -75,6 +88,7 @@ app.component('product-display', {
             image: './assets/images/colombia_paquet.png',
           }
         ],
+        reviews: [],
         styles: {
           roundButton: {
             borderRadius: '20px',
@@ -94,6 +108,9 @@ app.component('product-display', {
       updateSelectedImage(index) {
         this.selectedImage = index
       },
+      addReview(review) {
+        this.reviews.push(review)
+      }
     },
     computed: {
       image() {
